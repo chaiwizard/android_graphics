@@ -107,57 +107,65 @@ public class GraphicsView extends View {
 		int height = getHeight();
 		int rx = 20;
 		int y = height / 3 ;
-		int x = width / 2;
+
 		Paint paint1 = new Paint();
-		paint1.setColor(Color.BLUE);
 		paint1.setAntiAlias(true);
 		paint1.setStyle(Paint.Style.FILL);
 		Shader mShader = new LinearGradient(0, y, 0, y+260,  
-                new int[] { Color.rgb(250,233,222),Color.rgb(252,79,8) }, null, Shader.TileMode.REPEAT);
+                new int[] { Color.rgb(250,233,222),Color.rgb(252,79,8) }, 
+                null, Shader.TileMode.REPEAT);
 		paint1.setShader(mShader);
+		
+		Paint paint2 = new Paint();
+		paint2.setColor(Color.WHITE);
+		paint2.setAntiAlias(true);
+		paint2.setStyle(Paint.Style.STROKE);
+		paint2.setStrokeWidth(3);
+		
+		Paint paint3 = new Paint();
+		
+		Shader shader = new LinearGradient(0,y+10,0,y+260,
+				Color.argb(128, 255, 255, 255),
+				Color.argb(0, 255, 255, 255),
+				Shader.TileMode.REPEAT);
+		paint3.setShader(shader);
+		
 	
 		Path path = new Path();
 		RectF oval = new RectF(0, y, width, y+260);
-
 		path.addRoundRect(oval, rx,rx, Path.Direction.CCW);
-/*
-		//a round rect width:200 height:100
-		RectF oval = new RectF(0,y,rx*2,y+rx*2);
-		path.addArc(oval, 180, 90);
-		path.moveTo(0,y+rx);
-		path.lineTo(0, y+rect_height-rx);
-		
-		oval.set(0, rect_height+y-rx*2, rx*2, rect_height+y);
-		path.addArc(oval, 90, 90);
-		path.moveTo(rx, rect_height+y);
-		path.lineTo(rect_width-rx, rect_height+y);
-		
-		oval.set(rect_width-rx*2,rect_height+y-rx*2,rect_width,rect_height+y);
-		path.addArc(oval, 0, 90);
-		path.moveTo(rect_width, y+rect_height-rx);
-		path.lineTo(rect_width, rx+y);
-		
-		oval.set(rect_width-rx*2,y,rect_width,rx*2+y);
-		path.addArc(oval,270,90);
-		path.moveTo(rect_width-rx, y);
-		path.lineTo(rx,y);
-		//path.lineTo(0, y+rx);
-		path.close();
-		
-		
-		Path path2 = new Path();
-		path2.moveTo(0,y+rx);
-		path2.lineTo(0, y+rect_height-rx);
-		path2.lineTo(rx, y+rect_height);
-		path2.lineTo(rect_width-rx, y+rect_height);
-		
-		
-		path2.lineTo(0, y+rx);
-*/
-
 		canvas.drawPath(path, paint1);
 		
-		//canvas.drawPath(path2, paint);
+		Path path1 = new Path();
+		path1.moveTo(30, y + 20);
+		path1.lineTo(80, y + 60);
+		path1.lineTo(130, y + 50);
+
+		path1.lineTo(180, y + 40);
+		path1.lineTo(230, y + 30);
+		path1.lineTo(280, y + 70);
+		path1.lineTo(330, y + 100);
+		
+		canvas.drawPath(path1,paint2);
+		
+		
+		Path path3 = new Path();
+		
+		path3.moveTo(30, y + 20);
+		path3.lineTo(80, y + 60);
+		path3.lineTo(130, y + 50);
+
+		path3.lineTo(180, y + 40);
+		path3.lineTo(230, y + 30);
+		path3.lineTo(280, y + 70);
+		path3.lineTo(330, y + 100);
+		path3.lineTo(330, y + 260);
+		path3.lineTo(30, y + 260);
+		path3.lineTo(30, y + 20);
+		path3.close();
+		
+		canvas.drawPath(path3, paint3);
+		
 	}
 
 
