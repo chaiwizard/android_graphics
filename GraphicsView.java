@@ -3,9 +3,11 @@ package com.example.hellocanvas;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.WindowManager;
@@ -104,15 +106,18 @@ public class GraphicsView extends View {
 		int width = getWidth();
 		int height = getHeight();
 		int rx = 20;
-		int y = height / 2 ;
+		int y = height / 3 ;
 		int x = width / 2;
 		Paint paint1 = new Paint();
 		paint1.setColor(Color.BLUE);
 		paint1.setAntiAlias(true);
 		paint1.setStyle(Paint.Style.FILL);
+		Shader mShader = new LinearGradient(0, y, 0, y+260,  
+                new int[] { Color.rgb(250,233,222),Color.rgb(252,79,8) }, null, Shader.TileMode.REPEAT);
+		paint1.setShader(mShader);
 	
 		Path path = new Path();
-		RectF oval = new RectF(0, y, 200, y+100);
+		RectF oval = new RectF(0, y, width, y+260);
 
 		path.addRoundRect(oval, rx,rx, Path.Direction.CCW);
 /*
